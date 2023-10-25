@@ -1,0 +1,9 @@
+# Fipe database studies
+
+## Requirements
+
+Docker and Docker Compose
+
+## How to run
+
+Simply run `docker compose up`
