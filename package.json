@@ -2,21 +2,27 @@
   "devDependencies": {
     "@types/express": "^4.17.20",
     "@types/pg": "^8.10.7",
-    "dotenv": "^16.3.1",
-    "nodemon": "^3.0.1",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "3.0.3",
+    "prisma": "^5.5.2",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {
     "express": "^4.18.2",
+    "fipe-promise": "^1.0.0",
     "pg": "^8.11.3"
   },
   "name": "fipe-database-studies",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node ./dist/app.js --env-file .env",
-    "dev": "nodemon -L -e ts --exec \"npm run build && npm start\"",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node --env-file .env ./dist/src/app.js",
+    "dev": "node --trace-warnings --env-file .env --watch -r ts-node/register src/app.ts"
   },
   "author": "",
   "license": "ISC",
