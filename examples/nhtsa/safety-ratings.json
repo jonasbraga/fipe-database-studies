@@ -1,0 +1,36 @@
+{
+  "Count": 1,
+  "Message": "Results returned successfully",
+  "Results": [
+    {
+      "VehiclePicture": "https://static.nhtsa.gov/images/vehicles/8151_st0640_046.png",
+      "OverallRating": "Not Rated",
+      "OverallFrontCrashRating": "Not Rated",
+      "FrontCrashDriversideRating": "Not Rated",
+      "FrontCrashPassengersideRating": "Not Rated",
+      "OverallSideCrashRating": "Not Rated",
+      "SideCrashDriversideRating": "Not Rated",
+      "SideCrashPassengersideRating": "Not Rated",
+      "combinedSideBarrierAndPoleRating-Front": "Not Rated",
+      "combinedSideBarrierAndPoleRating-Rear": "Not Rated",
+      "sideBarrierRating-Overall": "Not Rated",
+      "RolloverRating": "Not Rated",
+      "RolloverRating2": "Not Rated",
+      "RolloverPossibility": 0.0,
+      "RolloverPossibility2": 0.0,
+      "dynamicTipResult": " ",
+      "SidePoleCrashRating": "Not Rated",
+      "NHTSAElectronicStabilityControl": "Standard",
+      "NHTSAForwardCollisionWarning": "No",
+      "NHTSALaneDepartureWarning": "No",
+      "ComplaintsCount": 118,
+      "RecallsCount": 3,
+      "InvestigationCount": 1,
+      "ModelYear": 2013,
+      "Make": "ACURA",
+      "Model": "RDX",
+      "VehicleDescription": "2013 Acura RDX SUV FWD",
+      "VehicleId": 7520
+    }
+  ]
+}

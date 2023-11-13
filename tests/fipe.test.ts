@@ -1,1 +1,1 @@
-import { getBrands, getDetails, getModels, getYears } from '../src/fipe-adapter'
+import { getMakes, getDetails, getModels, getYears } from '../src/fipe-adapter'

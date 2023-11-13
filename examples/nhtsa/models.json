@@ -1,0 +1,54 @@
+{
+  "Count": 8,
+  "Message": "Results returned successfully",
+  "Results": [
+    {
+      "ModelYear": 2013,
+      "Make": "ACURA",
+      "Model": "ILX",
+      "VehicleId": 0
+    },
+    {
+      "ModelYear": 2013,
+      "Make": "ACURA",
+      "Model": "ILX HYBRID",
+      "VehicleId": 0
+    },
+    {
+      "ModelYear": 2013,
+      "Make": "ACURA",
+      "Model": "MDX",
+      "VehicleId": 0
+    },
+    {
+      "ModelYear": 2013,
+      "Make": "ACURA",
+      "Model": "RDX",
+      "VehicleId": 0
+    },
+    {
+      "ModelYear": 2013,
+      "Make": "ACURA",
+      "Model": "TL",
+      "VehicleId": 0
+    },
+    {
+      "ModelYear": 2013,
+      "Make": "ACURA",
+      "Model": "TSX",
+      "VehicleId": 0
+    },
+    {
+      "ModelYear": 2013,
+      "Make": "ACURA",
+      "Model": "TSX  SPORT WAGON",
+      "VehicleId": 0
+    },
+    {
+      "ModelYear": 2013,
+      "Make": "ACURA",
+      "Model": "ZDX",
+      "VehicleId": 0
+    }
+  ]
+}

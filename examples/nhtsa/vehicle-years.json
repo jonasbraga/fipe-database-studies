@@ -1,0 +1,14 @@
+{
+  "Count": 2,
+  "Message": "Results returned successfully",
+  "Results": [
+    {
+      "VehicleDescription": "2013 Acura RDX SUV 4WD",
+      "VehicleId": 7731
+    },
+    {
+      "VehicleDescription": "2013 Acura RDX SUV FWD",
+      "VehicleId": 7520
+    }
+  ]
+}

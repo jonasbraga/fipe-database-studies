@@ -5,7 +5,7 @@
   { "codigo": 8531, "nome": "AMAROK Comfor. CD 2.0 TDI 4x4 Dies. Aut." },
   { "codigo": 5748, "nome": "AMAROK CS2.0 16V/S2.0 16V TDI 4x2 Diesel" },
   { "codigo": 5749, "nome": "AMAROK CS2.0 16V/S2.0 16V TDI 4x4 Diesel" },
-  { "codigo": 8532, "nome": "AMAROK Extreme CD 3.0 4x4 TB Dies. Aut." },
+  { "codigo": "8532", "nome": "AMAROK Extreme CD 3.0 4x4 TB Dies. Aut." },
   { "codigo": 7854, "nome": "AMAROK Hig. Extreme CD 2.0 4x4 Dies. Aut" },
   { "codigo": 7674, "nome": "AMAROK Hig.ULTIMATE CD 2.0 4x4 Dies. Aut" },
   { "codigo": 5940, "nome": "AMAROK High.CD 2.0 16V TDI 4x4 Dies. Aut" },

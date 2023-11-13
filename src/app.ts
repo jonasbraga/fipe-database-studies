@@ -1,17 +1,29 @@
-import express, { type Request, type Response } from 'express'
-import { getBrands, getDetails, getModels, getYears } from './fipe-adapter'
+import { Command } from 'commander'
+import { processFipe } from './controller'
 
-const app = express()
-const port = process.env.PORT || 3000
+const program = new Command()
 
-app.get('/startDownloading', async (req: Request, res: Response) => {
-  await getDetails(59, 8112, '2020-1')
+program
+  .command('initProcess')
+  .description('Download data from FIPE and saves in database')
+  .action(async () => {
+    await processFipe()
+  })
+
+program.parse(process.argv)
+
+/* console.log('Enter a command:')
+
+process.stdin.on('data', async (input) => {
+  const command = input.toString().toUpperCase().replace('\n', '')
+
+  if (command === 'INIT_PROCESS') {
+    console.time('Process')
+    await processFipe()
+    console.timeEnd('Process')
+    console.log('Process finished.')
+  } else {
+    console.log('Invalid command.')
+  }
 })
-
-app.get('/', async (req: Request, res: Response) => {
-  res.send('Hello World! my pass: ' + process.env.DB_PASSWORD)
-})
-
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`)
-})
+ */
