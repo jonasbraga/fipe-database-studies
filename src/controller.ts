@@ -1,4 +1,4 @@
-import Fuse, { FuseResult } from 'fuse.js'
+import Fuse from 'fuse.js'
 import { FipeDetails } from '../types'
 import {
   saveDetails,
@@ -19,54 +19,71 @@ import {
 export const processFipe = async () => {
   // Should run trought makes API, then for each call the models API, then for each call the years API, then for each call the details API
   // After that, should save the data in the database
+  try {
+    let allMakes = await getMakes()
+    for (const make of allMakes) {
+      const makeId = parseInt(make.codigo)
+      const allModels = await getModels(makeId)
+      const idMake = await saveMakes(make)
+      const startTimeMake = new Date()
+      for (const model of allModels) {
+        model.codigo = parseInt(model.codigo.toString())
+        const idModel = await saveModels(model, idMake)
+        const modelId = parseInt(model.codigo.toString())
+        const allYears = await getYears(makeId, modelId)
+        const startTimeModel = new Date()
+        for (const year of allYears) {
+          const idYear = await saveYears(year)
+          const details = await getDetails(makeId, modelId, year.codigo)
+          const idVehicleDetails = await saveDetails(details, idModel, idYear)
+          const safetyRatingId = await handleSafetyRatings(
+            details,
+            idVehicleDetails
+          )
 
-  let allMakes = await getMakes()
-  for (const make of allMakes) {
-    const makeId = parseInt(make.codigo)
-    const allModels = await getModels(makeId)
-    await saveMakes(make)
-    const startTimeMake = new Date()
-    for (const model of allModels) {
-      await saveModels(model)
-      const modelId = parseInt(model.codigo.toString())
-      const allYears = await getYears(makeId, modelId)
-      const startTimeModel = new Date()
-      for (const year of allYears) {
-        await saveYears(year)
-        const details = await getDetails(makeId, modelId, year.codigo)
-        await saveDetails(details)
-        await handleSafetyRatings(details)
+          const currentTime = new Date()
+          const elapsedTime =
+            (currentTime.getTime() - startTimeModel.getTime()) / 1000
+
+          if (elapsedTime > 30) {
+            console.log(
+              'More than 30 seconds have passed. Skipping to next model.'
+            )
+            break
+          }
+        }
 
         const currentTime = new Date()
         const elapsedTime =
-          (currentTime.getTime() - startTimeModel.getTime()) / 1000
+          (currentTime.getTime() - startTimeMake.getTime()) / 1000
 
-        if (elapsedTime > 30) {
-          console.log(
-            'More than 30 seconds have passed. Skipping to next model.'
-          )
+        if (elapsedTime > 300) {
+          console.log('More than 5 minutes have passed. Skipping to next make.')
           break
         }
       }
-
-      const currentTime = new Date()
-      const elapsedTime =
-        (currentTime.getTime() - startTimeMake.getTime()) / 1000
-
-      if (elapsedTime > 300) {
-        console.log('More than 5 minutes have passed. Skipping to next make.')
-        break
-      }
     }
+  } catch (error) {
+    console.error(error)
   }
 }
 
-const handleSafetyRatings = async (details: FipeDetails) => {
+const handleSafetyRatings = async (
+  details: FipeDetails,
+  idVehicleDetails: number
+) => {
   const vehicleId = await getVehicleId(details)
   if (vehicleId) {
     // This data is not available for all vehicles
     const safetyRatings = await getNhtsaSafetyRatings(vehicleId)
-    await saveSafetyRating(safetyRatings)
+    if (!safetyRatings) {
+      return
+    }
+    const safetyRatingId = await saveSafetyRating(
+      safetyRatings,
+      idVehicleDetails
+    )
+    return safetyRatingId
   }
 }
 
@@ -147,7 +164,7 @@ const getVehicleId = async (fipeVehicleDetails: FipeDetails) => {
 
     return vehicleId.item.VehicleId
   } catch (error) {
-    console.error(error)
+    console.error('Error trying to get Vehicle ID: ', error)
     return null
   }
 }
